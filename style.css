@@ -5,134 +5,62 @@
     --bg: #f0f2f5;
 }
 
-body {
-    background-color: var(--bg);
-    font-family: 'Segoe UI', system-ui, sans-serif;
-    margin: 0;
-    scroll-behavior: smooth;
-}
-
-/* Icono Flotante Superior */
-.floating-prayer {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: var(--gold);
-    color: white;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    z-index: 1000;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    text-decoration: none;
-}
+body { background-color: var(--bg); font-family: 'Segoe UI', sans-serif; margin: 0; scroll-behavior: smooth; overflow-x: hidden; }
 
 /* Header y Avatar */
-.main-header {
-    background: linear-gradient(135deg, var(--primary) 0%, #001a35 100%);
-    color: white;
-    padding: 60px 20px;
-    text-align: center;
-}
+.main-header { background: linear-gradient(135deg, var(--primary) 0%, #001a35 100%); color: white; padding: 60px 20px; text-align: center; }
+.avatar-img { width: 80px; height: 80px; background: white; border-radius: 50%; border: 3px solid var(--gold); padding: 5px; animation: pulse 2s infinite; }
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+.avatar-bubble { background: white; color: var(--primary); padding: 10px 15px; border-radius: 15px; font-size: 14px; margin-top: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); max-width: 250px; display: inline-block; }
 
-.avatar-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.avatar-img {
-    width: 80px;
-    height: 80px;
-    background: white;
-    border-radius: 50%;
-    border: 3px solid var(--gold);
-    padding: 5px;
-}
-
-.avatar-bubble {
-    background: white;
-    color: var(--primary);
-    padding: 10px 15px;
-    border-radius: 15px;
-    font-size: 14px;
-    margin-top: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    max-width: 250px;
-}
-
-.mipes-tag { color: var(--gold); }
-.divider { width: 50px; height: 3px; background: var(--gold); margin: 15px auto; }
-
-/* Botones de Navegación */
-.action-section {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    padding: 20px;
-    margin-top: -30px;
-}
-
-.btn-nav {
-    flex: 1;
-    max-width: 170px;
-    padding: 15px;
-    border-radius: 12px;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-    background: white;
-    color: var(--primary);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: 0.3s;
-}
-
+/* Botones Navegación */
+.action-section { display: flex; justify-content: center; gap: 12px; padding: 20px; margin-top: -40px; position: relative; z-index: 5; }
+.btn-nav { flex: 1; max-width: 170px; padding: 15px; border-radius: 12px; border: none; font-weight: bold; cursor: pointer; background: white; color: var(--primary); box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: 0.3s; }
 .btn-gold { background: var(--gold); color: white; }
 
-/* Galerías Limpias */
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 15px;
+/* Galería Horizontal Interactiva */
+.horizontal-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
     padding: 20px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
 }
+.horizontal-scroll::-webkit-scrollbar { height: 6px; }
+.horizontal-scroll::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
 
-.card-foto { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-.card-foto img { width: 100%; height: 180px; object-fit: cover; display: block; }
-.card-footer { padding: 12px; display: flex; justify-content: center; }
-
-.btn-corazon {
-    background: #f8f9fa;
-    border: none;
-    padding: 8px 18px;
+.card-foto {
+    flex: 0 0 280px;
+    scroll-snap-align: start;
+    background: white;
     border-radius: 20px;
-    cursor: pointer;
-    font-weight: bold;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
 }
-.btn-corazon.active { color: var(--heart); background: #ffebeb; }
+.card-foto:hover { transform: translateY(-5px); }
+.card-foto img { width: 100%; height: 220px; object-fit: cover; cursor: zoom-in; }
+.card-footer { padding: 15px; display: flex; justify-content: center; background: #fff; }
 
-/* Formulario de Oración */
-.prayer-section { background: var(--primary); padding: 80px 20px; color: white; }
-.prayer-card {
-    max-width: 450px;
-    margin: auto;
-    background: rgba(255,255,255,0.1);
-    padding: 30px;
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
+/* Lightbox (Ampliación) */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
 }
+.lightbox-img { max-width: 90%; max-height: 80%; border-radius: 10px; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
+.close-lightbox { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
 
-.prayer-icon-header { font-size: 40px; color: var(--gold); margin-bottom: 15px; }
+/* Icono Flotante */
+.floating-prayer { position: fixed; bottom: 20px; right: 20px; background: var(--gold); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 28px; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
 
-#prayerForm input, #prayerForm textarea {
-    width: 100%; padding: 14px; margin: 10px 0; border-radius: 10px; border: none; box-sizing: border-box;
-}
-
-.btn-save {
-    width: 100%; background: var(--gold); color: white; border: none; padding: 18px; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 16px;
-}
+/* Formulario */
+.prayer-section { background: var(--primary); padding: 80px 20px; color: white; border-radius: 40px 40px 0 0; }
+.prayer-card { max-width: 450px; margin: auto; background: rgba(255,255,255,0.1); padding: 30px; border-radius: 30px; backdrop-filter: blur(10px); }
+.btn-save { width: 100%; background: var(--gold); color: white; border: none; padding: 18px; border-radius: 15px; font-weight: bold; cursor: pointer; font-size: 16px; transition: 0.3s; }
+.btn-save:hover { background: #b48a4d; }
