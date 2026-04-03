@@ -5,20 +5,92 @@
     --bg: #f0f2f5;
 }
 
-body { background-color: var(--bg); font-family: 'Segoe UI', sans-serif; margin: 0; scroll-behavior: smooth; overflow-x: hidden; }
+body {
+    background-color: var(--bg);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    margin: 0;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
 
-/* Header y Avatar */
-.main-header { background: linear-gradient(135deg, var(--primary) 0%, #001a35 100%); color: white; padding: 60px 20px; text-align: center; }
-.avatar-img { width: 80px; height: 80px; background: white; border-radius: 50%; border: 3px solid var(--gold); padding: 5px; animation: pulse 2s infinite; }
-@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
-.avatar-bubble { background: white; color: var(--primary); padding: 10px 15px; border-radius: 15px; font-size: 14px; margin-top: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); max-width: 250px; display: inline-block; }
+/* Icono Flotante */
+.floating-prayer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--gold);
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
 
-/* Botones Navegación */
-.action-section { display: flex; justify-content: center; gap: 12px; padding: 20px; margin-top: -40px; position: relative; z-index: 5; }
-.btn-nav { flex: 1; max-width: 170px; padding: 15px; border-radius: 12px; border: none; font-weight: bold; cursor: pointer; background: white; color: var(--primary); box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: 0.3s; }
+/* Header y Avatar con Animación */
+.main-header {
+    background: linear-gradient(135deg, var(--primary) 0%, #001a35 100%);
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.avatar-img {
+    width: 80px;
+    height: 80px;
+    background: white;
+    border-radius: 50%;
+    border: 3px solid var(--gold);
+    padding: 5px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.avatar-bubble {
+    background: white;
+    color: var(--primary);
+    padding: 10px 15px;
+    border-radius: 15px;
+    font-size: 14px;
+    margin-top: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    display: inline-block;
+}
+
+/* Navegación */
+.action-section {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 20px;
+    margin-top: -35px;
+    z-index: 10;
+}
+
+.btn-nav {
+    flex: 1;
+    max-width: 170px;
+    padding: 15px;
+    border-radius: 12px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    background: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
 .btn-gold { background: var(--gold); color: white; }
 
-/* Galería Horizontal Interactiva */
+/* Carrusel Horizontal */
 .horizontal-scroll {
     display: flex;
     overflow-x: auto;
@@ -27,7 +99,8 @@ body { background-color: var(--bg); font-family: 'Segoe UI', sans-serif; margin:
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
 }
-.horizontal-scroll::-webkit-scrollbar { height: 6px; }
+
+.horizontal-scroll::-webkit-scrollbar { height: 5px; }
 .horizontal-scroll::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
 
 .card-foto {
@@ -36,31 +109,39 @@ body { background-color: var(--bg); font-family: 'Segoe UI', sans-serif; margin:
     background: white;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
 }
-.card-foto:hover { transform: translateY(-5px); }
-.card-foto img { width: 100%; height: 220px; object-fit: cover; cursor: zoom-in; }
-.card-footer { padding: 15px; display: flex; justify-content: center; background: #fff; }
 
-/* Lightbox (Ampliación) */
+.card-foto img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    cursor: zoom-in;
+    display: block;
+}
+
+.card-footer { padding: 12px; display: flex; justify-content: center; }
+
+/* Lightbox Estilo Moderno */
 .lightbox {
     display: none;
     position: fixed;
-    z-index: 2000;
+    z-index: 2500;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.9);
+    background: rgba(0,0,0,0.95);
     justify-content: center;
     align-items: center;
 }
-.lightbox-img { max-width: 90%; max-height: 80%; border-radius: 10px; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
-.close-lightbox { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
 
-/* Icono Flotante */
-.floating-prayer { position: fixed; bottom: 20px; right: 20px; background: var(--gold); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 28px; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+.lightbox-img { max-width: 90%; max-height: 80%; border-radius: 8px; }
+
+.close-lightbox {
+    position: absolute;
+    top: 25px; right: 35px;
+    color: white; font-size: 45px; cursor: pointer;
+}
 
 /* Formulario */
-.prayer-section { background: var(--primary); padding: 80px 20px; color: white; border-radius: 40px 40px 0 0; }
-.prayer-card { max-width: 450px; margin: auto; background: rgba(255,255,255,0.1); padding: 30px; border-radius: 30px; backdrop-filter: blur(10px); }
-.btn-save { width: 100%; background: var(--gold); color: white; border: none; padding: 18px; border-radius: 15px; font-weight: bold; cursor: pointer; font-size: 16px; transition: 0.3s; }
-.btn-save:hover { background: #b48a4d; }
+.prayer-section { background: var(--primary); padding: 70px 20px; color: white; border-top-left-radius: 40px; border-top-right-radius: 40px; }
+.prayer-card { max-width: 450px; margin: auto; background: rgba(255,255,255,0.1); padding: 30px; border-radius: 25px; backdrop-filter: blur(10px); }
+.btn-save { width: 100%; background: var(--gold); color: white; border: none; padding: 18px; border-radius: 12px; font-weight: bold; cursor: pointer; transition: 0.3s; }
