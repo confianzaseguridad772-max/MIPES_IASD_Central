@@ -1,130 +1,74 @@
 :root {
-    --primary-blue: #003366;
+    --primary: #003366;
     --gold: #c5a059;
-    --heart-red: #e74c3c;
-    --bg-light: #f4f7f9;
+    --heart: #e74c3c;
+    --glass: rgba(255, 255, 255, 0.9);
 }
 
 body {
-    background-color: var(--bg-light);
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    color: #333;
+    background-color: #f0f4f8;
+    font-family: 'Segoe UI', system-ui, sans-serif;
     margin: 0;
-    text-align: center;
+    color: #2d3436;
 }
 
-/* Encabezado Elegante */
+/* Header Moderno */
 .main-header {
-    padding: 50px 20px;
-    background: white;
-    border-bottom: 4px solid var(--gold);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-}
-
-.main-header h1 {
-    color: var(--primary-blue);
-    font-size: 1.8rem;
-    margin: 0;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.mipes-tag { color: var(--gold); }
-
-.main-header h2 {
-    color: #555;
-    font-weight: 400;
-    font-size: 1.1rem;
-    margin: 10px 0;
-}
-
-.divider {
-    width: 80px;
-    height: 3px;
-    background: var(--gold);
-    margin: 20px auto;
-}
-
-/* Sección de Botones */
-.action-section { 
-    margin: 30px 0; 
-    display: flex;
-    justify-content: center;
-    gap: 15px; /* Espacio entre botones */
-    flex-wrap: wrap; /* Para que en celulares se pongan uno abajo del otro */
-}
-
-.btn-principal, .btn-secundario {
-    padding: 15px 30px;
-    font-size: 16px;
-    font-weight: bold;
+    background: linear-gradient(135deg, var(--primary) 0%, #001f3f 100%);
     color: white;
+    padding: 60px 20px;
+    text-align: center;
+    clip-path: ellipse(150% 100% at 50% 0%);
+}
+
+.mipes-tag { color: var(--gold); font-weight: bold; }
+.divider { width: 50px; height: 4px; background: var(--gold); margin: 15px auto; border-radius: 2px; }
+
+/* Botones Navegación */
+.action-section { display: flex; justify-content: center; gap: 15px; margin: -30px 0 40px; flex-wrap: wrap; }
+.btn-nav {
+    padding: 14px 28px;
+    border-radius: 30px;
     border: none;
-    border-radius: 50px;
+    font-weight: bold;
     cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     transition: 0.3s;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.btn-principal {
-    background: linear-gradient(45deg, var(--primary-blue), #00509d);
-}
-
-.btn-secundario {
-    background: linear-gradient(45deg, var(--gold), #b38f4d);
-}
-
-.btn-principal:hover, .btn-secundario:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-}
-
-/* Galería Interactiva */
-.gallery-section { padding: 20px; }
-
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.card-foto {
     background: white;
-    border-radius: 12px;
+    color: var(--primary);
+}
+.btn-gold { background: var(--gold); color: white; }
+.btn-nav:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.25); }
+
+/* Galerías */
+.gallery-wrapper { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+.section-title { border-left: 5px solid var(--gold); padding-left: 15px; margin-bottom: 25px; color: var(--primary); }
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+
+/* Tarjetas de Fotos */
+.card-foto {
+    background: var(--glass);
+    border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+    backdrop-filter: blur(5px);
     transition: 0.3s;
 }
+.card-foto:hover { transform: scale(1.02); }
+.card-foto img { width: 100%; height: 200px; object-fit: cover; }
+.card-footer { padding: 15px; display: flex; justify-content: space-between; align-items: center; }
 
-.card-foto:hover { transform: translateY(-8px); }
+/* Botón Corazón */
+.btn-corazon { background: #f8f9fa; border: none; padding: 8px 12px; border-radius: 20px; cursor: pointer; transition: 0.3s; }
+.btn-corazon.active { background: #ffeaea; color: var(--heart); }
+.likes-count { font-weight: bold; margin-left: 5px; color: #555; }
 
-.card-foto img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
+/* Formulario Oración */
+.prayer-section { background: var(--primary); padding: 60px 20px; margin-top: 50px; color: white; }
+.prayer-card { max-width: 500px; margin: 0 auto; background: rgba(255,255,255,0.1); padding: 30px; border-radius: 20px; }
+#prayerForm input, #prayerForm textarea {
+    width: 100%; padding: 12px; margin: 10px 0; border-radius: 10px; border: none; box-sizing: border-box;
 }
-
-.card-footer {
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.btn-whatsapp {
+    width: 100%; background: #25d366; color: white; border: none; padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer;
 }
-
-.card-footer p { 
-    margin: 0; 
-    font-weight: 600; 
-    color: var(--primary-blue);
-}
-
-.btn-corazon {
-    background: none;
-    border: none;
-    color: #ddd;
-    font-size: 1.3rem;
-    cursor: pointer;
-}
-
-.btn-corazon.active { color: var(--heart-red); }
