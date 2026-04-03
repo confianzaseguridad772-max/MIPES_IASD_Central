@@ -23,20 +23,18 @@ body {
 
 .main-header h1 {
     color: var(--primary-blue);
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     margin: 0;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-.mipes-tag {
-    color: var(--gold);
-}
+.mipes-tag { color: var(--gold); }
 
 .main-header h2 {
     color: #555;
     font-weight: 400;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     margin: 10px 0;
 }
 
@@ -47,25 +45,38 @@ body {
     margin: 20px auto;
 }
 
-/* Botón Principal */
-.action-section { margin: 30px 0; }
+/* Sección de Botones */
+.action-section { 
+    margin: 30px 0; 
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Espacio entre botones */
+    flex-wrap: wrap; /* Para que en celulares se pongan uno abajo del otro */
+}
 
-.btn-principal {
-    padding: 15px 35px;
-    font-size: 18px;
+.btn-principal, .btn-secundario {
+    padding: 15px 30px;
+    font-size: 16px;
     font-weight: bold;
     color: white;
-    background: linear-gradient(45deg, var(--primary-blue), #00509d);
     border: none;
     border-radius: 50px;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0, 51, 102, 0.3);
     transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.btn-principal:hover {
+.btn-principal {
+    background: linear-gradient(45deg, var(--primary-blue), #00509d);
+}
+
+.btn-secundario {
+    background: linear-gradient(45deg, var(--gold), #b38f4d);
+}
+
+.btn-principal:hover, .btn-secundario:hover {
     transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(0, 51, 102, 0.4);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 /* Galería Interactiva */
@@ -106,7 +117,6 @@ body {
     margin: 0; 
     font-weight: 600; 
     color: var(--primary-blue);
-    text-transform: capitalize;
 }
 
 .btn-corazon {
@@ -115,10 +125,6 @@ body {
     color: #ddd;
     font-size: 1.3rem;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 5px;
 }
 
 .btn-corazon.active { color: var(--heart-red); }
-.btn-corazon span { color: #888; font-size: 0.9rem; }
