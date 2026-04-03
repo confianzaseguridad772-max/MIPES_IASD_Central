@@ -1,4 +1,4 @@
-// 1. CONFIGURACIÓN DE RUTAS Y FOTOS
+// 1. CONFIGURACIÓN DE FOTOS
 const config = {
     evangelismo: ["gp1.jpeg", "gp2.jpeg", "gp3.jpeg", "santa1.jpeg", "santa2.jpeg", "santa3.jpeg", "santa4.jpeg", "santa5.jpeg"],
     escuelaSabatica: ["dis1.jpeg", "es1.jpeg", "es2.jpeg", "es3.jpeg", "ora1.jpeg"]
@@ -8,20 +8,18 @@ const config = {
 document.getElementById('btnIngresar').onclick = () => window.location.href = 'https://confianzaseguridad772-max.github.io/vamos-gp/';
 document.getElementById('btnDones').onclick = () => window.location.href = 'https://confianzaseguridad772-max.github.io/Dones-IASD/';
 
-// 3. CARGA DE GALERÍAS
+// 3. CARGA DE GALERÍAS (SIN NOMBRE DE ARCHIVO)
 function renderGallery(lista, carpeta, contenedorId) {
     const contenedor = document.getElementById(contenedorId);
     lista.forEach(archivo => {
-        const idUnico = `${carpeta}-${archivo.split('.')[0]}`;
         const card = document.createElement('div');
         card.className = 'card-foto';
         card.innerHTML = `
-            <img src="${carpeta}/${archivo}" alt="MIPES" onerror="this.closest('.card-foto').remove()">
+            <img src="${carpeta}/${archivo}" alt="Iglesia Central" onerror="this.closest('.card-foto').remove()">
             <div class="card-footer">
-                <p style="text-transform: capitalize; font-size: 0.8rem;">${archivo.split('.')[0]}</p>
-                <button class="btn-corazon" data-id="${idUnico}" onclick="toggleLike(this)">
+                <button class="btn-corazon" onclick="toggleLike(this)">
                     <i class="fas fa-heart"></i>
-                    <span class="likes-count">${Math.floor(Math.random() * 50) + 10}</span>
+                    <span class="likes-count">${Math.floor(Math.random() * 20) + 5}</span>
                 </button>
             </div>
         `;
@@ -32,15 +30,13 @@ function renderGallery(lista, carpeta, contenedorId) {
 renderGallery(config.evangelismo, "evangelismo", "galleryEvangelismo");
 renderGallery(config.escuelaSabatica, "escuelasabatica", "galleryEscuelaSabatica");
 
-// 4. SISTEMA DE REACCIONES AUTOMÁTICAS (5 por minuto)
+// 4. SISTEMA DE REACCIONES AUTOMÁTICAS (+5 cada minuto)
 setInterval(() => {
-    const todosLosContadores = document.querySelectorAll('.likes-count');
-    todosLosContadores.forEach(contador => {
+    document.querySelectorAll('.likes-count').forEach(contador => {
         let actual = parseInt(contador.innerText);
-        contador.innerText = actual + 5; // Suma 5 reacciones automáticamente
+        contador.innerText = actual + 5;
     });
-    console.log("Reacciones actualizadas automáticamente (+5)");
-}, 60000); // 60000 ms = 1 minuto
+}, 60000);
 
 // 5. LÓGICA DE LIKE MANUAL
 function toggleLike(btn) {
@@ -50,17 +46,25 @@ function toggleLike(btn) {
     span.innerText = btn.classList.contains('active') ? num + 1 : num - 1;
 }
 
-// 6. FORMULARIO DE ORACIÓN -> WHATSAPP
+// 6. ENVÍO A WHATSAPP CORREGIDO
 document.getElementById('prayerForm').onsubmit = function(e) {
     e.preventDefault();
     const nombre = document.getElementById('userName').value;
-    const motivo = document.getElementById('prayerReason.').value;
+    const motivo = document.getElementById('prayerReason').value;
+    const linkGrupo = "https://chat.whatsapp.com/J8uTU6IcZNOLxPLiLHW0Gr";
     
-    const mensaje = `🙏 *PEDIDO DE ORACIÓN - MIPES TINGO MARÍA*%0A%0A*Nombre:* ${nombre}%0A*Motivo:* ${motivo}%0A%0A_Enviado desde la plataforma oficial._`;
-    const urlWhatsapp = `https://wa.me/?text=${mensaje}`;
+    // Preparamos el mensaje
+    const mensaje = `🙏 *NUEVO PEDIDO DE ORACIÓN*%0A*Nombre:* ${nombre}%0A*Motivo:* ${motivo}`;
     
-    // Si quieres que vaya directo al grupo, usamos el link del grupo:
-    // Pero WhatsApp por seguridad no permite enviar texto directo a un enlace de invitación de grupo automáticamente.
-    // Lo enviamos para que el usuario lo comparta o lo mande a un contacto.
-    window.open(urlWhatsapp, '_blank');
+    // Enviamos primero el texto a WhatsApp para que el usuario lo copie/envíe
+    // Y luego lo invitamos a unirse al grupo si no está.
+    const urlTexto = `https://wa.me/?text=${mensaje}`;
+    
+    alert("Se abrirá WhatsApp para enviar tu pedido. ¡Luego no olvides unirte al grupo!");
+    window.open(urlTexto, '_blank');
+    
+    // Después de un pequeño retraso, abrimos el link del grupo
+    setTimeout(() => {
+        window.location.href = linkGrupo;
+    }, 3000);
 };
