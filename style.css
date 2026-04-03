@@ -2,73 +2,109 @@
     --primary: #003366;
     --gold: #c5a059;
     --heart: #e74c3c;
-    --glass: rgba(255, 255, 255, 0.9);
+    --white: #ffffff;
 }
 
 body {
-    background-color: #f0f4f8;
-    font-family: 'Segoe UI', system-ui, sans-serif;
+    background-color: #f4f7f6;
+    font-family: 'Segoe UI', sans-serif;
     margin: 0;
-    color: #2d3436;
+    overflow-x: hidden;
 }
 
-/* Header Moderno */
+/* Header Corregido */
 .main-header {
-    background: linear-gradient(135deg, var(--primary) 0%, #001f3f 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, #001a35 100%);
     color: white;
-    padding: 60px 20px;
+    padding: 60px 20px 80px; /* Más espacio abajo */
     text-align: center;
-    clip-path: ellipse(150% 100% at 50% 0%);
+    position: relative;
 }
 
-.mipes-tag { color: var(--gold); font-weight: bold; }
-.divider { width: 50px; height: 4px; background: var(--gold); margin: 15px auto; border-radius: 2px; }
+/* Espaciador para evitar que los botones se monten en el diseño curvo */
+.spacer {
+    height: 20px;
+}
 
-/* Botones Navegación */
-.action-section { display: flex; justify-content: center; gap: 15px; margin: -30px 0 40px; flex-wrap: wrap; }
+.action-section {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: -40px; /* Sube los botones ligeramente pero con espacio seguro */
+    position: relative;
+    z-index: 10;
+    padding: 0 10px;
+}
+
 .btn-nav {
-    padding: 14px 28px;
-    border-radius: 30px;
+    flex: 1;
+    max-width: 180px;
+    padding: 15px 10px;
+    border-radius: 12px;
     border: none;
     font-weight: bold;
+    font-size: 14px;
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    transition: 0.3s;
     background: white;
     color: var(--primary);
-}
-.btn-gold { background: var(--gold); color: white; }
-.btn-nav:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.25); }
-
-/* Galerías */
-.gallery-wrapper { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
-.section-title { border-left: 5px solid var(--gold); padding-left: 15px; margin-bottom: 25px; color: var(--primary); }
-.gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
-
-/* Tarjetas de Fotos */
-.card-foto {
-    background: var(--glass);
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.05);
-    backdrop-filter: blur(5px);
     transition: 0.3s;
 }
-.card-foto:hover { transform: scale(1.02); }
-.card-foto img { width: 100%; height: 200px; object-fit: cover; }
-.card-footer { padding: 15px; display: flex; justify-content: space-between; align-items: center; }
 
-/* Botón Corazón */
-.btn-corazon { background: #f8f9fa; border: none; padding: 8px 12px; border-radius: 20px; cursor: pointer; transition: 0.3s; }
-.btn-corazon.active { background: #ffeaea; color: var(--heart); }
-.likes-count { font-weight: bold; margin-left: 5px; color: #555; }
+.btn-gold { background: var(--gold); color: white; }
 
-/* Formulario Oración */
-.prayer-section { background: var(--primary); padding: 60px 20px; margin-top: 50px; color: white; }
-.prayer-card { max-width: 500px; margin: 0 auto; background: rgba(255,255,255,0.1); padding: 30px; border-radius: 20px; }
+/* Galerías Modernas */
+.gallery-wrapper { max-width: 1100px; margin: 40px auto; padding: 0 15px; }
+.section-title { color: var(--primary); border-left: 4px solid var(--gold); padding-left: 10px; }
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); /* Optimizado para móvil */
+    gap: 15px;
+}
+
+.card-foto {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.card-foto img { width: 100%; height: 180px; object-fit: cover; display: block; }
+
+/* Pie de foto corregido: ya no muestra el nombre del archivo */
+.card-footer {
+    padding: 10px;
+    display: flex;
+    justify-content: center; /* Centra el corazón */
+    background: white;
+}
+
+.btn-corazon {
+    background: #f0f0f0;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-corazon.active { color: var(--heart); background: #ffebeb; }
+
+/* Formulario */
+.prayer-section { background: var(--primary); padding: 50px 20px; color: white; text-align: center; }
+.prayer-card { max-width: 400px; margin: 0 auto; }
 #prayerForm input, #prayerForm textarea {
-    width: 100%; padding: 12px; margin: 10px 0; border-radius: 10px; border: none; box-sizing: border-box;
+    width: 100%; padding: 12px; margin: 8px 0; border-radius: 8px; border: none; font-family: inherit;
 }
 .btn-whatsapp {
-    width: 100%; background: #25d366; color: white; border: none; padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer;
+    width: 100%; background: #25d366; color: white; border: none; padding: 15px; border-radius: 8px; font-weight: bold; cursor: pointer;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 400px) {
+    .btn-nav { font-size: 12px; padding: 12px 5px; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
 }
