@@ -3,6 +3,7 @@
     --gold: #c5a059;
     --heart: #e74c3c;
     --bg: #f0f2f5;
+    --glass: rgba(255, 255, 255, 0.08);
 }
 
 body {
@@ -13,25 +14,7 @@ body {
     overflow-x: hidden;
 }
 
-/* Icono Flotante */
-.floating-prayer {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: var(--gold);
-    color: white;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 28px;
-    z-index: 1000;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
-
-/* Header y Avatar con Animación */
+/* Header y Avatar Animado */
 .main-header {
     background: linear-gradient(135deg, var(--primary) 0%, #001a35 100%);
     color: white;
@@ -40,8 +23,7 @@ body {
 }
 
 .avatar-img {
-    width: 80px;
-    height: 80px;
+    width: 80px; height: 80px;
     background: white;
     border-radius: 50%;
     border: 3px solid var(--gold);
@@ -55,35 +37,23 @@ body {
 }
 
 .avatar-bubble {
-    background: white;
-    color: var(--primary);
-    padding: 10px 15px;
-    border-radius: 15px;
-    font-size: 14px;
-    margin-top: 10px;
+    background: white; color: var(--primary);
+    padding: 10px 15px; border-radius: 15px;
+    font-size: 14px; margin-top: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     display: inline-block;
 }
 
-/* Navegación */
+/* Botones de Acción */
 .action-section {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    padding: 20px;
-    margin-top: -35px;
-    z-index: 10;
+    display: flex; justify-content: center;
+    gap: 12px; padding: 20px; margin-top: -35px;
 }
 
 .btn-nav {
-    flex: 1;
-    max-width: 170px;
-    padding: 15px;
-    border-radius: 12px;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-    background: white;
+    flex: 1; max-width: 170px; padding: 15px;
+    border-radius: 12px; border: none; font-weight: bold;
+    cursor: pointer; background: white;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     transition: 0.3s;
 }
@@ -92,56 +62,85 @@ body {
 
 /* Carrusel Horizontal */
 .horizontal-scroll {
-    display: flex;
-    overflow-x: auto;
-    gap: 20px;
-    padding: 20px;
+    display: flex; overflow-x: auto;
+    gap: 20px; padding: 20px;
     scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
 }
 
 .horizontal-scroll::-webkit-scrollbar { height: 5px; }
 .horizontal-scroll::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
 
 .card-foto {
-    flex: 0 0 280px;
-    scroll-snap-align: start;
-    background: white;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    flex: 0 0 280px; scroll-snap-align: start;
+    background: white; border-radius: 20px;
+    overflow: hidden; box-shadow: 0 8px 15px rgba(0,0,0,0.1);
 }
 
 .card-foto img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    cursor: zoom-in;
-    display: block;
+    width: 100%; height: 200px;
+    object-fit: cover; cursor: zoom-in;
 }
 
-.card-footer { padding: 12px; display: flex; justify-content: center; }
+/* Registro de Oración Moderno */
+.prayer-section {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #003366 0%, #001a35 100%);
+    display: flex; justify-content: center;
+}
 
-/* Lightbox Estilo Moderno */
+.prayer-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px; padding: 35px;
+    width: 100%; max-width: 550px;
+}
+
+.prayer-header { text-align: center; margin-bottom: 30px; }
+.prayer-icon { font-size: 40px; color: var(--gold); margin-bottom: 10px; }
+.prayer-header h3 { color: white; margin: 0; font-size: 26px; }
+.prayer-header p { color: #cbd5e0; font-size: 14px; margin-top: 8px; }
+
+.modern-form { display: flex; flex-direction: column; gap: 18px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+
+@media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
+
+.modern-form label { color: var(--gold); font-size: 13px; font-weight: 600; }
+.modern-form input, .modern-form textarea {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px; padding: 12px;
+    color: white; outline: none; transition: 0.3s;
+}
+
+.modern-form input:focus, .modern-form textarea:focus {
+    border-color: var(--gold); background: rgba(255, 255, 255, 0.12);
+}
+
+.btn-submit-modern {
+    background: var(--gold); color: white; border: none;
+    border-radius: 12px; padding: 16px; font-weight: 700;
+    cursor: pointer; display: flex; justify-content: center;
+    align-items: center; gap: 10px; transition: 0.3s;
+}
+
+.btn-submit-modern:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(197, 160, 89, 0.3); }
+
+/* Lightbox */
 .lightbox {
-    display: none;
-    position: fixed;
-    z-index: 2500;
+    display: none; position: fixed; z-index: 2000;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.95);
-    justify-content: center;
-    align-items: center;
+    background: rgba(0,0,0,0.9); justify-content: center; align-items: center;
 }
+.lightbox-img { max-width: 90%; max-height: 80%; border-radius: 10px; }
+.close-lightbox { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
 
-.lightbox-img { max-width: 90%; max-height: 80%; border-radius: 8px; }
-
-.close-lightbox {
-    position: absolute;
-    top: 25px; right: 35px;
-    color: white; font-size: 45px; cursor: pointer;
+.floating-prayer {
+    position: fixed; bottom: 20px; right: 20px;
+    background: var(--gold); color: white;
+    width: 60px; height: 60px; border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 28px; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
-
-/* Formulario */
-.prayer-section { background: var(--primary); padding: 70px 20px; color: white; border-top-left-radius: 40px; border-top-right-radius: 40px; }
-.prayer-card { max-width: 450px; margin: auto; background: rgba(255,255,255,0.1); padding: 30px; border-radius: 25px; backdrop-filter: blur(10px); }
-.btn-save { width: 100%; background: var(--gold); color: white; border: none; padding: 18px; border-radius: 12px; font-weight: bold; cursor: pointer; transition: 0.3s; }
