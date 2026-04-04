@@ -1,10 +1,10 @@
-// CONFIGURACIÓN DE FOTOS
+// 1. CONFIGURACIÓN DE IMÁGENES
 const config = {
-    evangelismo: ["gp1.jpeg", "gp2.jpeg", "gp3.jpeg", "santa1.jpeg", "santa2.jpeg", "santa3.jpeg", "santa4.jpeg", "santa5.jpeg"],
+    evangelismo: ["santa6.jpeg","santa7.jpeg","gp1.jpeg", "gp2.jpeg", "gp3.jpeg", "santa1.jpeg", "santa2.jpeg", "santa3.jpeg", "santa4.jpeg", "santa5.jpeg"],
     escuelaSabatica: ["dis1.jpeg", "es1.jpeg", "es2.jpeg", "es3.jpeg", "ora1.jpeg"]
 };
 
-// CARGAR GALERÍAS CON EVENTO DE AMPLIACIÓN
+// 2. RENDERIZAR GALERÍAS
 function renderGallery(lista, carpeta, contenedorId) {
     const contenedor = document.getElementById(contenedorId);
     lista.forEach(archivo => {
@@ -15,7 +15,7 @@ function renderGallery(lista, carpeta, contenedorId) {
             <div class="card-footer">
                 <button class="btn-corazon" onclick="toggleLike(this)">
                     <i class="fas fa-heart"></i>
-                    <span class="likes-count">${Math.floor(Math.random() * 30) + 10}</span>
+                    <span class="likes-count">${Math.floor(Math.random() * 40) + 20}</span>
                 </button>
             </div>
         `;
@@ -26,23 +26,19 @@ function renderGallery(lista, carpeta, contenedorId) {
 renderGallery(config.evangelismo, "evangelismo", "galleryEvangelismo");
 renderGallery(config.escuelaSabatica, "escuelasabatica", "galleryEscuelaSabatica");
 
-// LÓGICA DEL LIGHTBOX
+// 3. LÓGICA DE LIGHTBOX (AMPLIAR)
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
-const closeBtn = document.querySelector('.close-lightbox');
 
 function openLightbox(src) {
     lightbox.style.display = 'flex';
     lightboxImg.src = src;
 }
 
-closeBtn.onclick = () => lightbox.style.display = 'none';
+document.querySelector('.close-lightbox').onclick = () => lightbox.style.display = 'none';
 lightbox.onclick = (e) => { if(e.target !== lightboxImg) lightbox.style.display = 'none'; };
 
-// REDIRECCIONES Y LIKES
-document.getElementById('btnIngresar').onclick = () => window.location.href = 'https://confianzaseguridad772-max.github.io/vamos-gp/';
-document.getElementById('btnDones').onclick = () => window.location.href = 'https://confianzaseguridad772-max.github.io/Dones-IASD/';
-
+// 4. LIKES E INTERACCIÓN
 function toggleLike(btn) {
     btn.classList.toggle('active');
     let span = btn.querySelector('.likes-count');
@@ -50,12 +46,19 @@ function toggleLike(btn) {
     span.innerText = btn.classList.contains('active') ? n + 1 : n - 1;
 }
 
-// ENVÍO A GOOGLE SHEETS
+setInterval(() => {
+    document.querySelectorAll('.likes-count').forEach(c => c.innerText = parseInt(c.innerText) + 5);
+}, 60000);
+
+// 5. REDIRECCIONES Y ENVÍO A GOOGLE SHEETS
+document.getElementById('btnIngresar').onclick = () => window.location.href = 'https://confianzaseguridad772-max.github.io/vamos-gp/';
+document.getElementById('btnDones').onclick = () => window.location.href = 'https://confianzaseguridad772-max.github.io/Dones-IASD/';
+
 document.getElementById('prayerForm').onsubmit = function(e) {
     e.preventDefault();
     const btn = document.getElementById('btnSubmit');
     btn.disabled = true;
-    btn.innerHTML = "Procesando...";
+    btn.innerHTML = "Enviando...";
 
     const datos = {
         nombre: document.getElementById('userName').value,
@@ -74,6 +77,6 @@ document.getElementById('prayerForm').onsubmit = function(e) {
         alert("¡Pedido registrado! Estaremos orando por ti.");
         document.getElementById('prayerForm').reset();
         btn.disabled = false;
-        btn.innerHTML = '<i class="fas fa-cloud-upload-alt"></i> ENVIAR PETICIÓN';
+        btn.innerHTML = '<span class="btn-text">ENVIAR PETICIÓN</span> <i class="fas fa-paper-plane"></i>';
     });
 };
