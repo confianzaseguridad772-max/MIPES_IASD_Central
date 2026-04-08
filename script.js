@@ -95,7 +95,7 @@ document.getElementById('prayerForm').onsubmit = async function(e) {
         fecha: new Date().toLocaleString() // Añadimos fecha automáticamente
     };
 
-    const URL_SCRIPT = "https://script.google.com/macros/s/AKfycbxGrqRcVH8wfgBKhPv4g76F_9XfFxsiHjyIN_mCaaMlFY2P2iL9s-3P3TQfk6CtbzE/exec";
+    const URL_SCRIPT = "https://script.google.com/macros/s/AKfycbx2gUFv6fMo7vu5UvbMEJo-7pSLbzDlOjU7iLviNIikVKvIB7pWNVxM2PrTGIBXtO7v/exec";
 
     try {
         // Usamos URLSearchParams para que el Apps Script lo reciba más fácil como parámetros
