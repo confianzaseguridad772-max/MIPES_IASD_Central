@@ -32,8 +32,15 @@
 
     <main class="container">
         <div class="action-section">
-            <button id="btnIngresar" class="btn-nav">Registro Grupo Pequeño</button>
-            <button id="btnDones" class="btn-nav btn-gold">Test de DONES</button>
+            <button id="btnIngresar" class="btn-modern btn-blue">
+                <i class="fas fa-users"></i> Registro GP
+            </button>
+            <button id="btnAsistencia" class="btn-modern btn-green">
+                <i class="fas fa-check-double"></i> Asistencia GP
+            </button>
+            <button id="btnDones" class="btn-modern btn-gold">
+                <i class="fas fa-star"></i> Test de DONES
+            </button>
         </div>
 
         <section class="gallery-wrapper">
@@ -48,41 +55,48 @@
 
         <section id="seccion-oracion" class="prayer-section">
             <div class="prayer-card">
-                <div class="prayer-header">
-                    <div class="prayer-icon">
-                        <i class="fas fa-hands-praying"></i>
+                <div id="prayerContent">
+                    <div class="prayer-header">
+                        <div class="prayer-icon"><i class="fas fa-hands-praying"></i></div>
+                        <h3>Registro de Oración</h3>
+                        <p>Unidos en intercesión. Tus peticiones se guardan automáticamente para nuestro equipo.</p>
                     </div>
-                    <h3>Registro de Oración</h3>
-                    <p>Unidos en intercesión. Tus peticiones se guardan automáticamente para nuestro equipo de oración.</p>
+                    
+                    <form id="prayerForm" class="modern-form">
+                        <div class="form-group">
+                            <label for="userName"><i class="fas fa-user"></i> Nombres y Apellidos</label>
+                            <input type="text" id="userName" placeholder="Ej. Juan Pérez" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="userPhone"><i class="fas fa-phone"></i> Celular</label>
+                                <input type="tel" id="userPhone" placeholder="987 654 321" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="userAddress"><i class="fas fa-map-marker-alt"></i> Dirección</label>
+                                <input type="text" id="userAddress" placeholder="Barrio / Distrito" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prayerReason"><i class="fas fa-heart"></i> Motivo de oración</label>
+                            <textarea id="prayerReason" rows="3" placeholder="¿Cómo podemos orar por ti?" required></textarea>
+                        </div>
+
+                        <button type="submit" id="btnSubmit" class="btn-submit-modern">
+                            <span class="btn-text">ENVIAR PETICIÓN</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
                 </div>
-                
-                <form id="prayerForm" class="modern-form">
-                    <div class="form-group">
-                        <label for="userName"><i class="fas fa-user"></i> Nombres y Apellidos</label>
-                        <input type="text" id="userName" placeholder="Ej. Juan Pérez" required>
-                    </div>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="userPhone"><i class="fas fa-phone"></i> Celular</label>
-                            <input type="tel" id="userPhone" placeholder="987 654 321" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="userAddress"><i class="fas fa-map-marker-alt"></i> Dirección</label>
-                            <input type="text" id="userAddress" placeholder="Barrio / Distrito" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="prayerReason"><i class="fas fa-heart"></i> Motivo de oración</label>
-                        <textarea id="prayerReason" rows="3" placeholder="Cuéntanos cómo podemos orar por ti..." required></textarea>
-                    </div>
-
-                    <button type="submit" id="btnSubmit" class="btn-submit-modern">
-                        <span class="btn-text">ENVIAR PETICIÓN</span>
-                        <i class="fas fa-paper-plane"></i>
-                    </button>
-                </form>
+                <div id="successMessage" class="success-container" style="display: none;">
+                    <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+                    <h3>¡Petición Recibida!</h3>
+                    <p>Tu pedido ha sido registrado con éxito. Estaremos orando por ti con mucha fe.</p>
+                    <button onclick="resetPrayerForm()" class="btn-return">Enviar otro pedido</button>
+                </div>
             </div>
         </section>
     </main>
