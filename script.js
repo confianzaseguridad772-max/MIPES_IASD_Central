@@ -67,7 +67,7 @@ document.getElementById('prayerForm').onsubmit = function(e) {
     const motivo = document.getElementById('prayerReason').value;
 
     // REEMPLAZA ESTA URL con la de tu implementación de Google Apps Script
-    const URL_SCRIPT = "TU_URL_DE_GOOGLE_APPS_SCRIPT_AQUI";
+    const URL_SCRIPT = "https://script.google.com/macros/s/AKfycbwjLzcYHSyCSayBk_Es1YJYYfppMYcf0-mtYdtYMtVhXuztq3eFxCvIyLZOetYU6PHm/exec";
 
     const urlFinal = `${URL_SCRIPT}?nombre=${encodeURIComponent(nombre)}&celular=${encodeURIComponent(celular)}&direccion=${encodeURIComponent(direccion)}&motivo=${encodeURIComponent(motivo)}`;
 
