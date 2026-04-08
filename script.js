@@ -7,7 +7,7 @@ const config = {
 // 2. RENDERIZAR GALERÍAS
 function renderGallery(lista, carpeta, contenedorId) {
     const contenedor = document.getElementById(contenedorId);
-    if (!contenedor) return;
+    if(!contenedor) return;
     lista.forEach(archivo => {
         const card = document.createElement('div');
         card.className = 'card-foto';
@@ -23,23 +23,17 @@ function renderGallery(lista, carpeta, contenedorId) {
         contenedor.appendChild(card);
     });
 }
-
 renderGallery(config.evangelismo, "evangelismo", "galleryEvangelismo");
 renderGallery(config.escuelaSabatica, "escuelasabatica", "galleryEscuelaSabatica");
 
-// 3. LÓGICA DE LIGHTBOX (AMPLIAR)
+// 3. LÓGICA DE LIGHTBOX
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
-
-function openLightbox(src) {
-    lightbox.style.display = 'flex';
-    lightboxImg.src = src;
-}
-
+function openLightbox(src) { lightbox.style.display = 'flex'; lightboxImg.src = src; }
 document.querySelector('.close-lightbox').onclick = () => lightbox.style.display = 'none';
 lightbox.onclick = (e) => { if(e.target !== lightboxImg) lightbox.style.display = 'none'; };
 
-// 4. LIKES E INTERACCIÓN
+// 4. LIKES
 function toggleLike(btn) {
     btn.classList.toggle('active');
     let span = btn.querySelector('.likes-count');
@@ -47,44 +41,49 @@ function toggleLike(btn) {
     span.innerText = btn.classList.contains('active') ? n + 1 : n - 1;
 }
 
-// 5. REDIRECCIONES
+// 5. REDIRECCIONES MODERNAS
 document.getElementById('btnIngresar').onclick = () => window.location.href = 'https://confianzaseguridad772-max.github.io/vamos-gp/';
+document.getElementById('btnAsistencia').onclick = () => window.location.href = 'https://confianzaseguridad772-max.github.io/Asistencia/';
 document.getElementById('btnDones').onclick = () => window.location.href = 'https://confianzaseguridad772-max.github.io/Dones-IASD/';
 
-// 6. ENVÍO A GOOGLE SHEETS (MÉTODO GET)
-document.getElementById('prayerForm').onsubmit = function(e) {
+// 6. ENVÍO DE ORACIÓN (ELEGANTE)
+const prayerForm = document.getElementById('prayerForm');
+const prayerContent = document.getElementById('prayerContent');
+const successMessage = document.getElementById('successMessage');
+
+prayerForm.onsubmit = function(e) {
     e.preventDefault();
-    
     const btn = document.getElementById('btnSubmit');
-    const originalContent = btn.innerHTML;
-    
     btn.disabled = true;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ENVIANDO...';
 
     const nombre = document.getElementById('userName').value;
     const celular = document.getElementById('userPhone').value;
     const direccion = document.getElementById('userAddress').value;
     const motivo = document.getElementById('prayerReason').value;
 
-    // REEMPLAZA ESTA URL con la de tu implementación de Google Apps Script
     const URL_SCRIPT = "https://script.google.com/macros/s/AKfycbwjLzcYHSyCSayBk_Es1YJYYfppMYcf0-mtYdtYMtVhXuztq3eFxCvIyLZOetYU6PHm/exec";
-
     const urlFinal = `${URL_SCRIPT}?nombre=${encodeURIComponent(nombre)}&celular=${encodeURIComponent(celular)}&direccion=${encodeURIComponent(direccion)}&motivo=${encodeURIComponent(motivo)}`;
 
-    fetch(urlFinal, {
-        method: "GET",
-        mode: "no-cors"
-    })
+    fetch(urlFinal, { method: "GET", mode: "no-cors" })
     .then(() => {
-        alert("¡Pedido registrado! Estaremos orando por ti.");
-        document.getElementById('prayerForm').reset();
+        // Ocultamos el formulario y mostramos mensaje elegante
+        prayerContent.style.display = 'none';
+        successMessage.style.display = 'block';
     })
     .catch(error => {
         console.error("Error:", error);
-        alert("Hubo un error al enviar. Intenta de nuevo.");
-    })
-    .finally(() => {
+        alert("Lo sentimos, hubo un error técnico. Intenta nuevamente.");
         btn.disabled = false;
-        btn.innerHTML = originalContent;
+        btn.innerHTML = '<span class="btn-text">ENVIAR PETICIÓN</span> <i class="fas fa-paper-plane"></i>';
     });
 };
+
+function resetPrayerForm() {
+    prayerForm.reset();
+    successMessage.style.display = 'none';
+    prayerContent.style.display = 'block';
+    const btn = document.getElementById('btnSubmit');
+    btn.disabled = false;
+    btn.innerHTML = '<span class="btn-text">ENVIAR PETICIÓN</span> <i class="fas fa-paper-plane"></i>';
+}
