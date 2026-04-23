@@ -8,7 +8,7 @@ const config = {
 function renderGallery(lista, carpeta, contenedorId) {
     const contenedor = document.getElementById(contenedorId);
     if(!contenedor) return;
-    contenedor.innerHTML = ""; // Limpieza de seguridad
+    contenedor.innerHTML = ""; 
     lista.forEach(archivo => {
         const card = document.createElement('div');
         card.className = 'card-foto';
@@ -87,4 +87,13 @@ function resetPrayerForm() {
     const btn = document.getElementById('btnSubmit');
     btn.disabled = false;
     btn.innerHTML = '<span class="btn-text">ENVIAR PETICIÓN</span> <i class="fas fa-paper-plane"></i>';
+}
+
+// 7. REGISTRO DE SERVICE WORKER PARA APP (PWA)
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+            .then(reg => console.log('SW registrado'))
+            .catch(err => console.log('Error SW', err));
+    });
 }
