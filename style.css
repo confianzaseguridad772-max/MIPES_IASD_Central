@@ -3,6 +3,7 @@
     --gold: #c5a059;
     --green: #27ae60;
     --blue: #2980b9;
+    --red: #e74c3c; /* Nuevo color para el termómetro */
     --heart: #e74c3c;
     --bg: #f0f2f5;
 }
@@ -69,6 +70,7 @@ body {
 .btn-blue { background: linear-gradient(135deg, #3498db, #2980b9); }
 .btn-green { background: linear-gradient(135deg, #2ecc71, #27ae60); }
 .btn-gold { background: linear-gradient(135deg, #f1c40f, #c5a059); }
+.btn-red { background: linear-gradient(135deg, #e74c3c, #c0392b); }
 
 /* Galerías */
 .horizontal-scroll {
@@ -79,7 +81,9 @@ body {
     flex: 0 0 280px; scroll-snap-align: start;
     background: white; border-radius: 20px;
     overflow: hidden; box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
 }
+.card-foto:hover { transform: scale(1.02); }
 .card-foto img { width: 100%; height: 200px; object-fit: cover; cursor: zoom-in; }
 
 /* Sección Oración */
@@ -114,11 +118,10 @@ body {
     cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 10px;
 }
 
-/* Estilos de Éxito Elegante */
+/* Estilos de Éxito */
 .success-container { text-align: center; color: white; animation: fadeIn 0.5s ease; }
 .success-icon { font-size: 70px; color: #2ecc71; margin-bottom: 20px; }
 .success-container h3 { font-size: 28px; margin-bottom: 10px; }
-.success-container p { color: #cbd5e0; margin-bottom: 30px; }
 
 .btn-return {
     background: transparent; border: 2px solid var(--gold); color: var(--gold);
@@ -140,3 +143,8 @@ body {
     width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center;
     font-size: 28px; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
+
+.btn-corazon {
+    background: none; border: none; color: #888; cursor: pointer; transition: 0.3s;
+}
+.btn-corazon.active { color: var(--heart); }
