@@ -8,6 +8,7 @@ const config = {
 function renderGallery(lista, carpeta, contenedorId) {
     const contenedor = document.getElementById(contenedorId);
     if(!contenedor) return;
+    contenedor.innerHTML = ""; // Limpieza de seguridad
     lista.forEach(archivo => {
         const card = document.createElement('div');
         card.className = 'card-foto';
@@ -45,6 +46,7 @@ function toggleLike(btn) {
 document.getElementById('btnIngresar').onclick = () => window.location.href = 'https://confianzaseguridad772-max.github.io/vamos-gp/';
 document.getElementById('btnAsistencia').onclick = () => window.location.href = 'https://confianzaseguridad772-max.github.io/Asistencia/';
 document.getElementById('btnDones').onclick = () => window.location.href = 'https://confianzaseguridad772-max.github.io/Dones-IASD/';
+document.getElementById('btnTermometro').onclick = () => window.location.href = 'https://confianzaseguridad772-max.github.io/estadisticaMIPES/';
 
 // 6. ENVÍO DE ORACIÓN (ELEGANTE)
 const prayerForm = document.getElementById('prayerForm');
@@ -67,7 +69,6 @@ prayerForm.onsubmit = function(e) {
 
     fetch(urlFinal, { method: "GET", mode: "no-cors" })
     .then(() => {
-        // Ocultamos el formulario y mostramos mensaje elegante
         prayerContent.style.display = 'none';
         successMessage.style.display = 'block';
     })
