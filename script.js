@@ -89,7 +89,30 @@ function resetPrayerForm() {
     btn.innerHTML = '<span class="btn-text">ENVIAR PETICIÓN</span> <i class="fas fa-paper-plane"></i>';
 }
 
-// 7. REGISTRO DE SERVICE WORKER PARA APP (PWA)
+// 7. LÓGICA DE INSTALACIÓN (PWA)
+let deferredPrompt;
+const btnInstalar = document.getElementById('btnInstalar');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    // Evita que el navegador muestre el aviso automático
+    e.preventDefault();
+    // Guarda el evento para activarlo después
+    deferredPrompt = e;
+    // Muestra el botón de descarga
+    btnInstalar.style.display = 'flex';
+});
+
+btnInstalar.onclick = async () => {
+    if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+            btnInstalar.style.display = 'none';
+        }
+        deferredPrompt = null;
+    }
+};
+
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('./sw.js')
