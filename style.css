@@ -3,7 +3,8 @@
     --gold: #c5a059;
     --green: #27ae60;
     --blue: #2980b9;
-    --red: #e74c3c; /* Nuevo color para el termómetro */
+    --red: #e74c3c;
+    --purple: #8e44ad; /* Nuevo color */
     --heart: #e74c3c;
     --bg: #f0f2f5;
 }
@@ -65,12 +66,21 @@ body {
 
 .btn-modern i { font-size: 18px; }
 .btn-modern:hover { transform: translateY(-3px); box-shadow: 0 15px 25px rgba(0,0,0,0.2); }
-.btn-modern:active { transform: translateY(-1px); }
 
 .btn-blue { background: linear-gradient(135deg, #3498db, #2980b9); }
 .btn-green { background: linear-gradient(135deg, #2ecc71, #27ae60); }
 .btn-gold { background: linear-gradient(135deg, #f1c40f, #c5a059); }
 .btn-red { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+.btn-purple { 
+    background: linear-gradient(135deg, #9b59b6, var(--purple)); 
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(142, 68, 173, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(142, 68, 173, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(142, 68, 173, 0); }
+}
 
 /* Galerías */
 .horizontal-scroll {
@@ -81,9 +91,7 @@ body {
     flex: 0 0 280px; scroll-snap-align: start;
     background: white; border-radius: 20px;
     overflow: hidden; box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
 }
-.card-foto:hover { transform: scale(1.02); }
 .card-foto img { width: 100%; height: 200px; object-fit: cover; cursor: zoom-in; }
 
 /* Sección Oración */
@@ -98,8 +106,6 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 30px; padding: 40px;
     width: 100%; max-width: 550px;
-    min-height: 400px;
-    display: flex; flex-direction: column; justify-content: center;
 }
 
 .modern-form { display: flex; flex-direction: column; gap: 18px; }
@@ -109,7 +115,7 @@ body {
 .modern-form input, .modern-form textarea {
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 15px; padding: 12px; color: white; outline: none;
+    border-radius: 15px; padding: 12px; color: white;
 }
 
 .btn-submit-modern {
@@ -121,30 +127,28 @@ body {
 /* Estilos de Éxito */
 .success-container { text-align: center; color: white; animation: fadeIn 0.5s ease; }
 .success-icon { font-size: 70px; color: #2ecc71; margin-bottom: 20px; }
-.success-container h3 { font-size: 28px; margin-bottom: 10px; }
 
 .btn-return {
     background: transparent; border: 2px solid var(--gold); color: var(--gold);
-    padding: 10px 20px; border-radius: 30px; cursor: pointer; font-weight: bold;
-    transition: 0.3s;
+    padding: 10px 20px; border-radius: 30px; cursor: pointer;
 }
-.btn-return:hover { background: var(--gold); color: white; }
 
-@keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-/* Lightbox y Floating */
+/* Lightbox */
 .lightbox {
     display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0,0,0,0.9); justify-content: center; align-items: center;
 }
 .lightbox-img { max-width: 90%; max-height: 80%; border-radius: 10px; }
+
 .floating-prayer {
     position: fixed; bottom: 20px; right: 20px; background: var(--gold); color: white;
     width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center;
-    font-size: 28px; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    font-size: 28px; z-index: 1000;
 }
 
 .btn-corazon {
-    background: none; border: none; color: #888; cursor: pointer; transition: 0.3s;
+    background: none; border: none; color: #888; cursor: pointer;
 }
 .btn-corazon.active { color: var(--heart); }
