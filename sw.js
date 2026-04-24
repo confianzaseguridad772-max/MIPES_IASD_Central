@@ -1,7 +1,9 @@
 self.addEventListener('install', (e) => {
-  console.log('Service Worker: Instalado');
+    // Fuerza al SW a activarse sin esperar
+    self.skipWaiting();
+    console.log('Service Worker: Instalado');
 });
 
 self.addEventListener('fetch', (e) => {
-  e.respondWith(fetch(e.request));
+    e.respondWith(fetch(e.request));
 });
