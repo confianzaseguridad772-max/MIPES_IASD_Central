@@ -115,8 +115,9 @@ btnInstalar.onclick = async () => {
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
+        // El punto antes de /sw.js es vital en GitHub Pages
         navigator.serviceWorker.register('./sw.js')
-            .then(reg => console.log('SW registrado'))
-            .catch(err => console.log('Error SW', err));
+            .then(reg => console.log('SW registrado correctamente'))
+            .catch(err => console.log('Error al registrar SW', err));
     });
 }
