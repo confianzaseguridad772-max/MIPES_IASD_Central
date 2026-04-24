@@ -1,15 +1,22 @@
 {
   "name": "MIPES Iglesia Central",
   "short_name": "MIPES",
-  "description": "Ministerio Personal y Escuela Sabática - Tingo María",
+  "description": "Ministerio Personal y Escuela Sabática",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#003366",
   "theme_color": "#003366",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "https://cdn-icons-png.flaticon.com/512/4140/4140037.png",
       "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/4140/4140037.png",
+      "sizes": "192x192",
       "type": "image/png"
     }
   ]
